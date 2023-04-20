@@ -1,0 +1,17 @@
+C:\HAL\Cs\VerandaTool01\VerandaTool01\bin\Debug\VerandaTool01.exe.config
+C:\HAL\Cs\VerandaTool01\VerandaTool01\bin\Debug\VerandaTool01.exe
+C:\HAL\Cs\VerandaTool01\VerandaTool01\bin\Debug\VerandaTool01.pdb
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.csproj.AssemblyReference.cache
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.csproj.SuggestedBindingRedirects.cache
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\MainWindow.g.cs
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\App.g.cs
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01_MarkupCompile.cache
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01_MarkupCompile.lref
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\MainWindow.baml
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.g.resources
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.Properties.Resources.resources
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.csproj.GenerateResource.cache
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.csproj.CoreCompileInputs.cache
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.exe
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\VerandaTool01.pdb
+C:\HAL\Cs\VerandaTool01\VerandaTool01\obj\Debug\GeneratedInternalTypeHelper.g.cs

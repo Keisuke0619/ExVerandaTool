@@ -1,0 +1,114 @@
+﻿<Window x:Class="VerandaTool01.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VerandaTool01"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="800">
+    <Window.DataContext>
+        <local:MainVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Background="FloralWhite">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Label Content="ID:01" x:Name="LabelID"/>
+                <Label Content="日本語名"/>
+                <TextBox x:Name="TextNameJP" Text="{Binding NameJP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+                <Label Content="英語名"/>
+                <TextBox x:Name="TextNameEN" Text="{Binding NameEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+                <Label Content=""/>
+                <Label Content="ゴールド消費（Gold）"/>
+                <TextBox x:Name="TextPrice" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+                <Label Content="名声の変化"/>
+                <TextBox x:Name="TextReputation" Text="{Binding Reputation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+                <Label Content="一日の売り上げの変化（Gold/Day）"/>
+                <TextBox x:Name="TextProduct" Text="{Binding Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+                <!--<Label Content="使用バルコニー面積"/>
+                <TextBox x:Name="TextSize" Text="{Binding Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  LostFocus="textbox_LostFocus" 
+                         GotFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>-->
+            </StackPanel>
+            <Button Grid.Row="1" Content="Exit" Click="Button_Click"/>
+        </Grid>
+        
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12*"/>
+            </Grid.RowDefinitions>
+            <Label Content="配置マス" Grid.Row="0"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <local:SizeSelectButton Grid.Column="0" Grid.Row="0" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="1" Grid.Row="0" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="2" Grid.Row="0" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="3" Grid.Row="0" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="4" Grid.Row="0" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="0" Grid.Row="1" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="1" Grid.Row="1" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="2" Grid.Row="1" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="3" Grid.Row="1" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="4" Grid.Row="1" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="0" Grid.Row="2" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="1" Grid.Row="2" Click="Button_Click_Size"/>
+                <!--<Button Grid.Column="2" Grid.Row="2" Background="DeepSkyBlue" />-->
+                <Label Content ="中心" Grid.Column="2" Grid.Row="2" Background="DeepSkyBlue" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="DimGray" BorderThickness="1"/>
+                <local:SizeSelectButton Grid.Column="3" Grid.Row="2" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="4" Grid.Row="2" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="0" Grid.Row="3" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="1" Grid.Row="3" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="2" Grid.Row="3" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="3" Grid.Row="3" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="4" Grid.Row="3" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="0" Grid.Row="4" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="1" Grid.Row="4" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="2" Grid.Row="4" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="3" Grid.Row="4" Click="Button_Click_Size"/>
+                <local:SizeSelectButton Grid.Column="4" Grid.Row="4" Click="Button_Click_Size"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="0">
+                <StackPanel x:Name="ListPanel">
+                </StackPanel>
+            </ScrollViewer>
+            <Button Content="アイテム削除" Grid.Row ="1" Click="Button_Click_2" Background="Red" Foreground="White"/>
+            <Button Content="アイテム追加" Grid.Row ="2" Click="Button_Click_1"/>
+        </Grid>
+    </Grid>
+</Window>
