@@ -45,7 +45,8 @@ namespace VerandaTool01
 					item.price = i * 1;
 					item.reputation = i * 10;
 					item.product = i * 100;
-
+					item.size = new List<Vector2Int>();
+					item.size.Add(new Vector2Int(0, 0));
 					items.Add(item);
 				}
 
@@ -63,19 +64,25 @@ namespace VerandaTool01
 			ItemData.ins.reputation = items[target].reputation;
 			ItemData.ins.size = items[target].size;
 		}
+		/// <summary>
+		/// 右側のボタンリストをクリックした際に呼ばれる
+		/// </summary>
 		private void AddTest_Click(object sender, RoutedEventArgs e)
 		{
 			var btn = sender as CountUpButton;
 			if (btn == null)
 				return;
+			SaveAndResetPanels();
 			target = btn.insID;
 			
 			SetShowText();
 			ReloadText();
+			LoadPanels();
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
+			SaveAndResetPanels();
 			AddItemButton();
 			target = buttons.Count - 1;
 			SetShowText();
@@ -84,6 +91,7 @@ namespace VerandaTool01
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
+			SaveAndResetPanels();
 			SaveFile();
 			Close();
 		}
@@ -105,7 +113,6 @@ namespace VerandaTool01
 			item.price = 0;
 			item.reputation = 0;
 			item.product = 0;
-			item.size = 0;
 			items.Add(item);
 			
 		}
@@ -116,6 +123,12 @@ namespace VerandaTool01
 			{
 				using (var rb = new BinaryReader(fs))
 				{
+					var version = rb.ReadString();
+					if (version != "Version01")
+					{
+						MessageBox.Show(this, "データファイルのバージョンが違います。", "エラー：ファイルバージョン違い", MessageBoxButton.OK, MessageBoxImage.Warning);
+						return;
+					}
 					var itemsCount = rb.ReadInt32();
 					for(var i =0; i < itemsCount; i++)
 					{
@@ -125,7 +138,12 @@ namespace VerandaTool01
 						item.price = rb.ReadSingle();
 						item.reputation = rb.ReadSingle();
 						item.product = rb.ReadSingle();
-						item.size = rb.ReadInt32();
+						
+						item.size = new List<Vector2Int>();
+						var contentsNum = rb.ReadInt32();
+						for(var j =0; j < contentsNum; j++)
+							item.size.Add(new Vector2Int(rb.ReadInt32(), rb.ReadInt32()));
+
 						items.Add(item);
 						var addTest = new CountUpButton();
 						buttons.Add(addTest);
@@ -136,7 +154,7 @@ namespace VerandaTool01
 					}
 				}
 			}
-
+			LoadPanels();
 		}
 		private void SaveFile()
 		{
@@ -145,6 +163,7 @@ namespace VerandaTool01
 				using(var wb = new BinaryWriter(fs))
 				{
 					var id = 0;
+					wb.Write("Version01");
 					wb.Write(items.Count);
 					foreach (var item in this.items)
 					{
@@ -153,9 +172,13 @@ namespace VerandaTool01
 						wb.Write(item.price);
 						wb.Write(item.reputation);
 						wb.Write(item.product);
-						wb.Write(item.size);
+						wb.Write(item.size.Count());
+						for(int i = 0; i < item.size.Count(); i++)
+						{
+							wb.Write(item.size[i].x);
+							wb.Write(item.size[i].y);
+						}
 						id++;
-
 					}
 				}
 			}
@@ -190,6 +213,25 @@ namespace VerandaTool01
 			LabelID.Content = "ID:" + target.ToString("D2");
 		}
 
+		private void SaveAndResetPanels()
+		{
+			items[target].size = new List<Vector2Int>();
+			foreach(var btn in SizeSelectButton.list)
+			{
+				if(btn.GetIsActive())
+				{
+					items[target].size.Add(btn.GetPos());
+				}
+				btn.SetButtonActive(false);
+			}
+		}
+		private void LoadPanels()
+		{
+			foreach(var pos in items[target].size)
+			{
+				SizeSelectButton.list[(pos.x + 2) + (pos.y + 2) * 5].SetButtonActive(true);
+			}
+		}
 		private void textBox_GotFocus(object sender, RoutedEventArgs e)
 		{
 			var text = sender as TextBox;
@@ -223,6 +265,7 @@ namespace VerandaTool01
 
 				SetShowText();
 				ReloadText();
+				LoadPanels();
 			}
 		}
 

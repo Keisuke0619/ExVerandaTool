@@ -9,9 +9,14 @@ namespace VerandaTool01
 {
 	public class Vector2Int
 	{
-		int x;
-		int y;
-	}
+		public int x;
+		public int y;
+		public Vector2Int(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
+ 	}
 	public class ItemData
 	{
 		public static ItemData ins = new ItemData();
@@ -20,7 +25,7 @@ namespace VerandaTool01
 		public float price = 0.0f;			// 価格
 		public float product = 0.0f;		// 生産性
 		public float reputation = 0.0f;    // 評判上昇値
-		public Vector2Int[] size;
+		public List<Vector2Int> size;
 	}
 	internal class DataIO
 	{

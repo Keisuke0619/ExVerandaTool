@@ -16,7 +16,7 @@ namespace VerandaTool01
 		public float Price { get {  return data.price; }  set { data.price = value; } }
 		public float Product { get {  return data.product; }  set { data.product = value; } }
 		public float Reputation { get {  return data.reputation; }  set { data.reputation = value; } }
-		public int Size { get {  return data.size; }  set { data.size = value; } }
+		public List<Vector2Int> Size { get {  return data.size; }  set { data.size = value; } }
 		
 		
 	}
